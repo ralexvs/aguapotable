@@ -1,0 +1,144 @@
+<!doctype html>
+{% load static %}
+<html lang="es">
+ 
+<head>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inicital-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <title>{% block title %}  | Agua Potable{% endblock title %}
+     </title>
+ 
+    <!-- Bootstrap CSS -->
+ 
+ <link rel="stylesheet" type="text/css" href= "{% static 'core/css/bootstrap.css' %}" >
+ 
+  
+  <!-- fontawesome CSS -->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+ 
+ <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper base--> 
+    <!-- ============================================================== -->
+    <div class=" container-fluid bg-light">
+        <div class="row d-block">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+    {% include 'core/includes/header.html' %}
+        </div>
+        <div class="row">
+
+
+
+         <!-- ============================================================== -->
+        <!-- end navbar -->
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        
+
+        {% include 'core/includes/left-sidebar.html' %}
+
+
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="col-10">
+                <div class="container-fluid ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-9">
+                                <h4 class=" text-muted">
+                                <i class="fas fa-search"></i>
+                                {% block page-title %}  {% endblock page-title %}
+                                </h4>
+                                    
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                {% block submenu-crud %}{% endblock submenu-crud %} 
+                            </div>
+                            
+                        </div>
+                    </div> <!--end Row-->
+                    <hr>
+                    <div class="row">
+                        <div class="col-9">
+                            <span class="text-muted">Mostar</span>  
+                            <select class="select" name="select">
+                                <option value="value1" selected>10</option> 
+                                <option value="value2">20</option>
+                                <option value="value3">30</option>
+                                <option value="value3">50</option>
+                                <option value="value3">70</option>
+                                <option value="value3">100</option>
+                            </select>
+                            <span class="text-muted">registros</span> 
+                        </div>
+                        <div class="col-3">
+                            <div class="col-12 top-search-bar">
+                                <input class="form-control form-control-sm" id="custom-search" type="text" placeholder="Buscar..">
+                            </div>
+                        </div>
+                    </div><!--end Row-->
+                </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader  -->
+                    <!-- ============================================================== -->
+
+{% block content %}
+    
+ <!--
+                    {% include 'core/includes/content.html' %}
+                    -->
+{% endblock content %}
+                       
+                   
+
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            {% include 'core/includes/footer.html' %}
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div> 
+    <!-- ============================================================== -->
+        <!-- end row  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Termina el contenido-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->   
+
+
+    <script src="{% static 'core/js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'core/js/popper.min.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+ 
+</html>

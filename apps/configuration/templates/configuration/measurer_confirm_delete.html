@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+<!--content-->
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+{% block  breadcrumb %}  
+  <li class="breadcrumb-item"><a  href="{% url 'ajustes:measurer_list' %}">Listar</a></li>
+{% endblock breadcrumb  %}
+
+
+{% block content %}
+<section class="main container mt-2">
+    <div class="row">
+        <article class="col">
+            
+                           
+            <form method="post">{% csrf_token %}
+                <p>Esta seguro que desea borrar <b> "{{ object}}"?</b></p>
+                <button class="btn btn-danger" type="submit" >Sí, estoy seguro?</button>
+
+                <a class="btn btn-default btn-secondary" href="{% url 'ajustes:measurer_list' %}">No, llevame atras</a>
+            </form>
+            
+
+
+      
+                  <!--Paginacion -->
+                    
+                
+        </article>
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+
+    </div>
+
+</section> <!--content end--> 
+
+
+{% endblock content %}
+

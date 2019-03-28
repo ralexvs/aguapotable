@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+<!--content-->
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+{% block  breadcrumb %}  
+  <li class="breadcrumb-item"><a  href="{% url 'ajustes:subscribers_list' %}">Listar</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'ajustes:subscribers_list' %}">Deshacer</a></li>
+{% endblock breadcrumb  %}
+
+{% block content %}
+{% include 'configuration/includes/configuration_menu_crud.html' %} 
+<section class="main container mt-2">
+    <div class="row">
+        <article class="col">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Guardar">
+            </form>
+
+
+      
+                  <!--Paginacion -->
+                    
+                
+        </article>
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+
+    </div>
+
+</section> <!--content end--> 
+
+
+{% endblock content %}
+

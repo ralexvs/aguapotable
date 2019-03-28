@@ -1,0 +1,50 @@
+<!--table -->
+   
+<section class="main container mt-2">
+    <div class="row">
+        <article class="col">
+            <table class="table table-hover table-striped table-sm">
+              <thead class="bg-info text-dark">
+                <tr>
+                  <th scope="col"> Item </th>
+                  <th scope="col">Detalle</th>
+                  <th scope="col">Rangos</th>
+                  <th scope="col">Valor Excedente</th>
+                  <th scope="col">Tipo servicio</th>
+                  <th scope="col" class=" text-center"><i class="fas fa-tools"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                            
+                  {% if object_list %}
+                      
+                  {% for rate in object_list %}
+                    <tr>
+                      <td>{{rate.id }}</td>
+                      <th class="row">{{rate.detail}}</td>
+                      <td>{{rate.lowre_range}} - {{rate.top_range}}</td>
+                      <td>{{rate.excess_rate}}</td>
+                      <td>{{rate.types_service}}</td>
+                      <td class=" text-center">
+                        <a href="#"><abbr title="Editar"> <i class="fas fa-edit text-info"></i></abbr></a> 
+                        <a href="#"><abbr title="Ver detalle"><i class="far fa-eye text-success"></i></abbr></a> 
+                        <a href="#"> <abbr title="Eliminar"> <i class="far fa-trash-alt text-dark"></i></abbr></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                  </tbody>
+            </table>
+            <!--Paginacion -->
+              {% include 'core/includes/paginacion.html' %}
+                    
+            </article>
+            <!--
+            <aside class="col-3 bg-light" >
+                
+            </aside>
+            -->
+    
+        </div>
+    
+    </section> <!--content end--> 

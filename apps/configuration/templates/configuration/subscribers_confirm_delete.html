@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+<!--content-->
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+{% block page-title %}
+Eliminar abonado
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-trash-alt"></i>Si, Eliminar </button> </a>
+  <a href="{% url 'ajustes:subscribers_list_table' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
+</div>
+{% endblock submenu-crud %}
+
+
+{% block content %}
+<section class="main container mt-2">
+    <div class="row">
+        <article class="col">
+            
+                           
+            <form method="post">{% csrf_token %}
+                <p>Esta seguro que desea borrar <b> "{{ object}}"?</b></p>
+                <button class="btn btn-danger" type="submit" >Sí, estoy seguro?</button>
+
+                <a class="btn btn-default btn-secondary" href="{% url 'ajustes:subscribers_list_table' %}">No, llevame atras</a>
+            </form>
+            
+
+
+      
+                  <!--Paginacion -->
+                    
+                
+        </article>
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+
+    </div>
+
+</section> <!--content end--> 
+
+
+{% endblock content %}
+

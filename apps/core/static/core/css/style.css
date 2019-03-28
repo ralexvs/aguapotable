@@ -1,0 +1,20 @@
+.color-header
+{
+   background: #7c7bad;
+   color: beige;
+}
+.color-nav
+{
+   background:white;
+   color: #666277;
+}
+.logo
+{
+   width: 52px;
+   height: 32px; 
+}
+body
+{
+   background-image: url("apps/core/static/core/img/form_sheetbg.png");
+   background-color: transparent;
+}

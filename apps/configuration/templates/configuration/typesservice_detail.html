@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+<!--content-->
+
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+
+{% block page-title %}
+Detalle de tipo de servicios
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="{% url 'ajustes:typesservice_update' pk=object.pk %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</button> </a>
+  <a href="{% url 'ajustes:typesservice_list' %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-list-alt "></i> Listar</button> </a>
+  <a href="{% url 'ajustes:typesservice_delete' pk=object.pk %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-trash-alt"></i> Borrar</button></a>
+</div>
+{% endblock submenu-crud %}
+
+
+  
+{% block content %}
+<section class="main container mt-2">
+    <div class="row">
+        <article class="col">
+          
+                <div class="card bg-light mb-3 float-left w-50" >
+                        <div class="card-header">{{object.detail}} </div>
+                        <div class="card-body">
+                          <h6 class="card-subtitle mb-2 text-muted">{{object.base_rate}} {{object.limit}} {{object.excess_rate_base}}</h6>
+                          <h5 class="card-title"> {{object.state_maximum_consumption}} {{object.maximum_consumption}} {{object.maximum_consumption_value}} </h5>
+                          <p class="card-text"> {{object.created}} {{object.modified}} </p>
+                        </div>
+                      </div>
+      
+                  <!--Paginacion -->
+                    
+                
+        </article>
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+
+    </div>
+
+</section> <!--content end--> 
+
+
+{% endblock content %}
+

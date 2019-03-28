@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+<!--content-->
+
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+
+{% block page-title %}
+Detalle del medidor
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="{% url 'ajustes:measurer_update' pk=object.pk %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</button> </a>
+  <a href="{% url 'ajustes:measurer_list' %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-list-alt "></i> Listar</button> </a>
+  <a href="{% url 'ajustes:measurer_delete' pk=object.pk %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-trash-alt"></i> Borrar</button></a>
+</div>
+{% endblock submenu-crud %}
+
+{% block content %}
+<section class="main container mt-2">
+    <div class="row">
+        <article class="col">
+          
+                <div class="card bg-light mb-3 float-left w-50" >
+                        <div class="card-header">{{object.number}} {{object.detail}}</div>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">{{object.brand}} - {{object.model}} </h6>
+                          <h5 class="card-title">{{object.initial_reading}}</h5>
+                          <p class="card-text">{{object.state}}</p>
+                          <a href="{% url 'ajustes:measurer_update' pk=object.pk %}" class="btn btn-success">Editar</a>
+                          <a href="{% url 'ajustes:measurer_delete' pk=object.pk %}" class="btn btn-danger">Borrar</a>
+                        </div>
+                      </div>
+      
+                  <!--Paginacion -->
+                    
+                
+        </article>
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+
+    </div>
+
+</section> <!--content end--> 
+
+
+{% endblock content %}
+

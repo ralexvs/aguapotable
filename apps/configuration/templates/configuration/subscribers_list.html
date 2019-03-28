@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% load static %}
+<!--content-->
+
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+{% block page-title %}
+Lista de la abonados
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="{% url 'ajustes:subscribers_create'  %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i>Crear nuevo</button> </a>
+  <a href="{% url 'ajustes:subscribers_list_table' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Actualizar</button></a>
+</div>
+{% endblock submenu-crud %}
+
+
+{% block content %}
+<section class="main container mt-1 clearfix ">
+    <div class="row">
+      <article class="col-12">
+          {% if object_list   %}
+          {% for abonado in subscribers_list|dictsortreversed:"id"  %}
+
+            <div class="w-50 mt-1 mb-1 float-left">
+              <div class="col-9 w-75 mt-1 mb-1 float-left" >
+                <div class="card-header"><h5 class="text-muted"> {{abonado.surname}} {{abonado.name}}</h4></div> 
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-2 text-muted">{{abonado.identification}} - {{abonado.email}} </h6>
+                  <h6 class="card-title">{{abonado.phone}} - {{abonado.mobile}}</h6>
+                  <p class="card-text">{{abonado.birth_date}}</p> 
+                  <a class="btn btn-sm btn-primary text-light stretched-link " href="{% url 'ajustes:subscribers_detail' pk=abonado.pk %}">Ver detalle</a>
+                </div>
+            </div>
+
+            <div class="col-3 w-25 mt-2 mb-2 float-right" >
+              {% if abonado.portrait %}
+                <img class="img-fluid rounded" style="width: 130px; height: 140px;" src="{{abonado.portrait.url}}" alt="">
+              {% else %}
+                <img class="img-fluid rounded" style="width: 130px; height: 140px;" src="{% static 'core/img/portrait.jpg' %}" alt="">
+              {% endif %}
+            </div>
+        </div>
+              
+            {% endfor %}
+          {% endif%}
+
+      
+      {% include 'core/includes/paginacion.html' %}
+      </article>
+    </div>
+</section>
+ 
+{% endblock content %}
+
