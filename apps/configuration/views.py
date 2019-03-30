@@ -4,40 +4,30 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse, reverse_lazy
 from .models import (
-    Subscribers, 
     Company, 
     TypesService, 
-    Measurer,
     Rate, 
     Fines,
     Discount,
+    PaymentMethods,
     )
 
 from .forms import (
-    SubscribersForm, 
-    MeasurerForm, 
     CompanyForm, 
     TypesServiceForm,
     RateForm,
     FinesForm,
     DiscountForm,
+    PaymentMethodsForm,
     )
 
 
 # Create your views here.
 
 #ListView
-class SubscribersListView(ListView):
-    model = Subscribers
-    #template_name = "configuration/list_subscribers.html"
-    paginate_by = 10
     
 class CompanyListView(ListView):
     model = Company
-
-class MeasurerListView(ListView):
-    model = Measurer
-    paginate_by = 10
 
 class TypesServiceListView(ListView):
     model = TypesService
@@ -45,23 +35,18 @@ class TypesServiceListView(ListView):
 class RateListView(ListView):
     model = Rate
 
-
 class FinesListView(ListView):
     model = Fines
-
 
 class DiscountListView(ListView):
     model = Discount
 
+class PaymentMethodsListView(ListView):
+    model = PaymentMethods
+
 
 
 #DetailView
-
-class SubscribersDetailView(DetailView):
-    model = Subscribers
-
-class MeasurerDetailView(DetailView):
-    model = Measurer
 
 class CompanyDetailView(DetailView):
     model = Company
@@ -80,19 +65,11 @@ class DiscountDetailView(DetailView):
     model = Discount
 
 
+class PaymentMethodsDetailView(DetailView):
+    model = PaymentMethods
+
+
 #CreateView
-
-class SubscribersCreateView(CreateView):
-    model = Subscribers
-    form_class = SubscribersForm
-    template_name = "configuration/subscribers_form.html"
-    success_url = reverse_lazy('ajustes:subscribers_list')
-
-class MeasurerCreateView(CreateView):
-    model = Measurer
-    form_class = MeasurerForm
-    template_name = "configuration/measurer_form.html"
-    success_url = reverse_lazy('ajustes:measurer_list')
 
 class CompanyCreateView(CreateView):
     model = Company
@@ -125,27 +102,17 @@ class DiscountCreateView(CreateView):
     template_name = "configuration/discount_form.html"
     success_url = reverse_lazy('ajustes:discount_list')
 
+class PaymentMethodsCreateView(CreateView):
+    model = PaymentMethods
+    form_class = PaymentMethodsForm
+    template_name = "configuration/paymentmethods_form.html"
+    success_url = reverse_lazy('ajustes:paymentmethods_list')
+
 
 
 
 #UpdateView
     
-class SubscribersUpdateView(UpdateView):
-    model = Subscribers
-    form_class = SubscribersForm
-    template_name_suffix  = "_update_form"
-    
-    def get_success_url(self):
-        return reverse_lazy('ajustes:subscribers_update', args=[self.object.id]) + '?ok'
-
-class MeasurerUpdateView(UpdateView):
-    model = Measurer
-    form_class = MeasurerForm
-    template_name_suffix = "_update_form"
-
-    def get_success_url(self):
-        return reverse_lazy('ajustes:measurer_update', args=[self.object.id]) + '?ok'
-
 class CompanyUpdateView(UpdateView):
     model = Company
     form_class = CompanyForm
@@ -187,17 +154,17 @@ class DiscountUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('ajustes:discount_update', args =[self.object.id]) + '?ok'
 
+class PaymentMethodsUpdateView(UpdateView):
+    model = PaymentMethods
+    form_class = PaymentMethodsForm
+    template_name_suffix = "_update_form"
+
+    def get_success_url(self):
+        return reverse_lazy('ajustes:paymentmethods_update', args = [self.object.id]) + '?ok'
+
 
 
 #DeleteView
-
-class SubscribersDeleteView(DeleteView):
-    model = Subscribers
-    success_url = reverse_lazy('ajustes:subscribers_list')
-
-class MeasurerDeleteView(DeleteView):
-    model = Measurer
-    success_url = reverse_lazy('ajustes:measurer_list')
 
 class CompanyDeleteView(DeleteView):
     model = Company
@@ -219,3 +186,8 @@ class FinesDeleteView(DeleteView):
 class DiscountDeleteView(DeleteView):
     model = Discount
     success_url = reverse_lazy('ajustes:discount_list')
+
+class PaymentMethodsDeleteView(DeleteView):
+    model = PaymentMethods
+    success_url = reverse_lazy('ajustes:paymentmethods_list')
+

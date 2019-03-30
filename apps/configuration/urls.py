@@ -1,21 +1,11 @@
 from django.contrib import admin
 from django.urls import path
 from .views import (
-    SubscribersListView,
-    SubscribersDetailView,
-    SubscribersCreateView,
-    SubscribersUpdateView,
-    SubscribersDeleteView,
     CompanyListView,
     CompanyDetailView,
     CompanyCreateView,
     CompanyUpdateView,
     CompanyDeleteView,
-    MeasurerListView,
-    MeasurerDetailView,
-    MeasurerCreateView,
-    MeasurerUpdateView,
-    MeasurerDeleteView,
     TypesServiceListView,
     TypesServiceDetailView,
     TypesServiceCreateView,
@@ -36,28 +26,22 @@ from .views import (
     DiscountCreateView,
     DiscountUpdateView,
     DiscountDeleteView,
+    PaymentMethodsListView,
+    PaymentMethodsDetailView,
+    PaymentMethodsCreateView,
+    PaymentMethodsUpdateView,
+    PaymentMethodsDeleteView,
 
     )
 
 
 
 configuration_patterns = ([
-    path('subscribers_list/', SubscribersListView.as_view(), name="subscribers_list"),
-    path('subscribers_list_table/', SubscribersListView.as_view(template_name="configuration/subscribers_list_tabla.html"), name="subscribers_list_table"),
-    path('subscribers_detail/<int:pk>/', SubscribersDetailView.as_view(), name="subscribers_detail"),
-    path('subscribers_create/', SubscribersCreateView.as_view(), name="subscribers_create"),
-    path('subscribers_update/<int:pk>/', SubscribersUpdateView.as_view(), name="subscribers_update"),
-    path('subscribers_delete/<int:pk>/', SubscribersDeleteView.as_view(), name="subscribers_delete"),
     path('company_list/', CompanyListView.as_view(), name="company_list"),
     path('company_detail/<int:pk>/', CompanyDetailView.as_view(), name="company_detail"),
     path('company_create/', CompanyCreateView.as_view(), name="company_create"),
     path('company_update/<int:pk>/', CompanyUpdateView.as_view(), name="company_update"),
     path('company_delete/<int:pk>/', CompanyDeleteView.as_view(), name="company_delete"),
-    path('measurer_list', MeasurerListView.as_view(), name='measurer_list'),
-    path('measurer_detail/<int:pk>/', MeasurerDetailView.as_view(), name='measurer_detail'),
-    path('measurer_create/', MeasurerCreateView.as_view(), name="measurer_create"),
-    path('measurer_update/<int:pk>/', MeasurerUpdateView.as_view(), name="measurer_update"),
-    path('measurer_delete/<int:pk>/', MeasurerDeleteView.as_view(), name="measurer_delete"),
     path('typesservice_list', TypesServiceListView.as_view(), name='typesservice_list'),
     path('typesservice_detail/<int:pk>/', TypesServiceDetailView.as_view(), name='typesservice_detail'),
     path('typesservice_create/', TypesServiceCreateView.as_view(), name="typesservice_create"),
@@ -78,5 +62,10 @@ configuration_patterns = ([
     path('discount_create/', DiscountCreateView.as_view(), name="discount_create"),
     path('discount_update/<int:pk>/', DiscountUpdateView.as_view(), name="discount_update"),
     path('discount_delete/<int:pk>/', DiscountDeleteView.as_view(), name="discount_delete"),
+    path('paymentmethods_list', PaymentMethodsListView.as_view(), name='paymentmethods_list'),
+    path('paymentmethods_detail/<int:pk>/', PaymentMethodsDetailView.as_view(), name='paymentmethods_detail'),
+    path('paymentmethods_create/', PaymentMethodsCreateView.as_view(), name="paymentmethods_create"),
+    path('paymentmethods_update/<int:pk>/', PaymentMethodsUpdateView.as_view(), name="paymentmethods_update"),
+    path('paymentmethods_delete/<int:pk>/', PaymentMethodsDeleteView.as_view(), name="paymentmethods_delete"),
 
 ],'ajustes')

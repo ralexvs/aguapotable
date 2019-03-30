@@ -4,13 +4,21 @@
   {{instance.title}}
 {% endblock title %}
 
-{% block  breadcrumb %}  
-  <li class="breadcrumb-item"><a  href="{% url 'ajustes:subscribers_list' %}">Listar</a></li>
-  <li class="breadcrumb-item"><a href="{% url 'ajustes:subscribers_list' %}">Deshacer</a></li>
-{% endblock breadcrumb  %}
+{% block page-title %}
+Nuevas formas de pago
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-save"></i>Grabar</button> </a>
+  <a href="{% url 'ajustes:paymentmethods_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
+</div>
+{% endblock submenu-crud %}
+
 
 {% block content %}
-{% include 'configuration/includes/configuration_menu_crud.html' %} 
 <section class="main container mt-2">
     <div class="row">
         <article class="col">
@@ -22,8 +30,7 @@
 
       
                   <!--Paginacion -->
-                    
-                
+                     
         </article>
         <!--
         <aside class="col-3 bg-light" >

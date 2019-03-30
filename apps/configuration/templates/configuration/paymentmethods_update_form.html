@@ -5,19 +5,17 @@
     {{instance.title}}
 {% endblock title %}
 
-
 {% block page-title %}
-Actualización de datos del abonado
+Actualización de métodos de pago
 {% endblock page-title %}
 
 
 {% block submenu-crud %}
 <div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
     <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-save"></i>Grabar</button> </a>
-    <a href="{% url 'ajustes:subscribers_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
+    <a href="{% url 'ajustes:paymentmethods_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
 </div>
 {% endblock submenu-crud %}
-
 
 {% block content %}
 <section class="main container mt-2 ">
@@ -27,7 +25,7 @@ Actualización de datos del abonado
             {% if 'ok' in request.GET %}
                 <p class="text-success">
                     Datos editados correctamente.
-                    <a href="{% url 'ajustes:subscribers_detail' object.id %}"> Haz clic para ver el resultado</a>
+                    <a href="{% url 'ajustes:paymentmethods_detail' object.id %}"> Haz clic para ver el resultado</a>
                 </p>
             {% endif %}
                 

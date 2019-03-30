@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apps.configuration.urls import configuration_patterns
+from apps.cadastre.urls import cadastre_patterns
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.core.urls')),
     path('ajustes/', include(configuration_patterns)),
+    path('catastro/', include(cadastre_patterns)),
 ]
 
 #Media files

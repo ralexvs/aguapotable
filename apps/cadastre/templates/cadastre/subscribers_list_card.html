@@ -14,8 +14,8 @@ Lista de la abonados
 
 {% block submenu-crud %}
 <div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
-  <a href="{% url 'ajustes:subscribers_create'  %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i>Crear nuevo</button> </a>
-  <a href="{% url 'ajustes:subscribers_list_table' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Actualizar</button></a>
+  <a href="{% url 'catastro:subscribers_create'  %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i>Crear nuevo</button> </a>
+  <a href="{% url 'catastro:subscribers_list_table' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Actualizar</button></a>
 </div>
 {% endblock submenu-crud %}
 
@@ -34,7 +34,7 @@ Lista de la abonados
                   <h6 class="card-subtitle mb-2 text-muted">{{abonado.identification}} - {{abonado.email}} </h6>
                   <h6 class="card-title">{{abonado.phone}} - {{abonado.mobile}}</h6>
                   <p class="card-text">{{abonado.birth_date}}</p> 
-                  <a class="btn btn-sm btn-primary text-light stretched-link " href="{% url 'ajustes:subscribers_detail' pk=abonado.pk %}">Ver detalle</a>
+                  <a class="btn btn-sm btn-primary text-light stretched-link " href="{% url 'catastro:subscribers_detail' pk=abonado.pk %}">Ver detalle</a>
                 </div>
             </div>
 

@@ -1,22 +1,18 @@
 from django.contrib import admin
 from .models import (
-    Subscribers, 
-    Measurer, 
-    Brand, 
     Company, 
     TypesService, 
     Rate,
     Fines,
+    PaymentMethods,
 )
 
 # Register your models here.
-admin.site.register(Subscribers)
-admin.site.register(Measurer)
-admin.site.register(Brand)
 admin.site.register(Company)
 admin.site.register(TypesService)
 admin.site.register(Rate)
 admin.site.register(Fines)
+admin.site.register(PaymentMethods)
 
 """
 class CompanyAdmin(admin.ModelAdmin):

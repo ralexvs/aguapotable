@@ -15,11 +15,15 @@
  
  <link rel="stylesheet" type="text/css" href= "{% static 'core/css/bootstrap.css' %}" >
  
-  
   <!-- fontawesome CSS -->
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
  
  <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+
+ <!--DataTable-->
+ <link rel="stylesheet" type="text/css" href="{% static 'core/css/jquery.dataTables.min.css' %}"/>
+ <link rel="stylesheet" type="text/css" href="{% static 'core/css/buttons.dataTables.min.css' %}"/>
+
 </head>
 
 <body>
@@ -61,14 +65,14 @@
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-8">
                                 <h4 class=" text-muted">
                                 <i class="fas fa-search"></i>
                                 {% block page-title %}  {% endblock page-title %}
                                 </h4>
                                     
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
                             <div class="row">
                                 {% block submenu-crud %}{% endblock submenu-crud %} 
                             </div>
@@ -76,25 +80,7 @@
                         </div>
                     </div> <!--end Row-->
                     <hr>
-                    <div class="row">
-                        <div class="col-9">
-                            <span class="text-muted">Mostar</span>  
-                            <select class="select" name="select">
-                                <option value="value1" selected>10</option> 
-                                <option value="value2">20</option>
-                                <option value="value3">30</option>
-                                <option value="value3">50</option>
-                                <option value="value3">70</option>
-                                <option value="value3">100</option>
-                            </select>
-                            <span class="text-muted">registros</span> 
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12 top-search-bar">
-                                <input class="form-control form-control-sm" id="custom-search" type="text" placeholder="Buscar..">
-                            </div>
-                        </div>
-                    </div><!--end Row-->
+                    
                 </div>
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
@@ -138,7 +124,68 @@
     <script src="{% static 'core/js/jquery-3.3.1.js' %}"></script>
     <script src="{% static 'core/js/popper.min.js' %}"></script>
     <script src="{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+    
 
+    <!--DataTable-->
+    <script type="text/javascript" src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/dataTables.buttons.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/buttons.flash.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/jszip.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/pdfmake.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/vfs_fonts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/buttons.html5.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/buttons.print.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'core/js/buttons.colVis.min.js' %}"></script>
+    
+<!--
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable({
+                    language: {
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                }
+            );
+        } );
+   
+   
+    </script>
+-->
+<script>
+        $(document).ready(function() {
+            $('#myTable').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    { extend: 'copyHtml5',  footer: true },
+                    { extend: 'excelHtml5', title:'Datos exportados', footer: true },
+                    { extend: 'pdfHtml5', title:'Datos exportados', footer: true },
+                    { extend: 'print', title:'Datos exportados', messageTop:'Informe de Abonados', footer: true},
+                ]
+            } );
+        } );
+</script>
+    
 </body>
  
 </html>

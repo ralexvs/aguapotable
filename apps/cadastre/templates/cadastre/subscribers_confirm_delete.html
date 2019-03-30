@@ -4,9 +4,18 @@
   {{instance.title}}
 {% endblock title %}
 
-{% block  breadcrumb %}  
-  <li class="breadcrumb-item"><a  href="{% url 'ajustes:measurer_list' %}">Listar</a></li>
-{% endblock breadcrumb  %}
+{% block page-title %}
+Eliminar abonado
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-trash-alt"></i>Si, Eliminar </button> </a>
+  <a href="{% url 'catastro:subscribers_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
+</div>
+{% endblock submenu-crud %}
 
 
 {% block content %}
@@ -18,13 +27,9 @@
             <form method="post">{% csrf_token %}
                 <p>Esta seguro que desea borrar <b> "{{ object}}"?</b></p>
                 <button class="btn btn-danger" type="submit" >Sí, estoy seguro?</button>
-
-                <a class="btn btn-default btn-secondary" href="{% url 'ajustes:measurer_list' %}">No, llevame atras</a>
+                <a class="btn btn-default btn-secondary" href="{% url 'catastro:subscribers_list' %}">No, llevame atras</a>
             </form>
             
-
-
-      
                   <!--Paginacion -->
                     
                 

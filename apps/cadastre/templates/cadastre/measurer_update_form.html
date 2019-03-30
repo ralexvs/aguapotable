@@ -14,7 +14,7 @@ Actualización datos del medidor
 {% block submenu-crud %}
 <div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
     <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-save"></i>Grabar</button> </a>
-    <a href="{% url 'ajustes:measurer_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
+    <a href="{% url 'catastro:measurer_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-undo-alt"></i> Deshacer</button></a>
 </div>
 {% endblock submenu-crud %}
 
@@ -27,7 +27,7 @@ Actualización datos del medidor
             {% if 'ok' in request.GET %}
                 <p class="text-success">
                     Datos editados correctamente.
-                    <a href="{% url 'ajustes:measurer_detail' object.id %}"> Haz clic para ver el resultado</a>
+                    <a href="{% url 'catastro:measurer_detail' object.id %}"> Haz clic para ver el resultado</a>
                 </p>
             {% endif %}
                 

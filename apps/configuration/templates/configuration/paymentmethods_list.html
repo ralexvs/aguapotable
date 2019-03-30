@@ -1,0 +1,79 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+{{instance.title}}   
+{% endblock title %}
+
+{% block page-title %}
+Lista formas de pago
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="{% url 'ajustes:paymentmethods_create' %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i>Crear nuevo</button> </a>
+  <a href="{% url 'ajustes:paymentmethods_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Actualizar</button></a>
+</div>
+{% endblock submenu-crud %}
+  
+  
+{% block content %}
+
+
+
+<section class="main container mt-2">
+    
+    
+    
+      
+  <div class="row">
+      <article class="col">
+          <table class="display compact order-column hover " id="myTable">
+            <thead >
+              <tr>
+                <th scope="col"> Item </th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Estado</th>
+                <th scope="col" class=" text-center"><i class="fas fa-tools"></i></th>
+                </tr>
+              </thead>
+              <tbody>
+                          
+                {% if object_list %}
+                    
+                {% for obj in paymentmethods_list %}
+                  <tr>
+                    <td>{{obj.id }}</td>
+                    <td>{{obj.detail}}</td>
+                    <td>{{obj.state}}</td>
+                    <td class=" text-center">
+                      <a href="{% url 'ajustes:paymentmethods_update' pk=obj.pk %}"><abbr title="Editar"> <i class="fas fa-edit text-info"></i></abbr></a> 
+                      <a href="{% url 'ajustes:paymentmethods_detail' pk=obj.pk %}"><abbr title="Ver detalle"><i class="far fa-eye text-success"></i></abbr></a> 
+                      <a href="{% url 'ajustes:paymentmethods_delete' pk=obj.pk %}"> <abbr title="Eliminar"> <i class="far fa-trash-alt text-dark"></i></abbr></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                </tbody>
+          </table>
+          <!--Paginacion -->
+            {% include 'core/includes/paginacion.html' %}
+                  
+          </article>
+          <!--
+          <aside class="col-3 bg-light" >
+              
+          </aside>
+          -->
+  
+      </div>
+  
+  </section> <!--content end--> 
+  
+ 
+{% endblock content %}
+ 
+   

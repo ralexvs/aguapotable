@@ -14,8 +14,8 @@ Lista de medidores
 
 {% block submenu-crud %}
 <div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
-  <a href="{% url 'ajustes:measurer_create' %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i>Crear nuevo</button> </a>
-  <a href="{% url 'ajustes:measurer_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Actualizar</button></a>
+  <a href="{% url 'catastro:measurer_create' %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i>Crear nuevo</button> </a>
+  <a href="{% url 'catastro:measurer_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Actualizar</button></a>
 </div>
 {% endblock submenu-crud %}
 
@@ -26,8 +26,8 @@ Lista de medidores
 <section class="main container mt-2">
       <div class="row">
           <article class="col">
-              <table class="table table-hover table-striped table-sm">
-                      <thead class="bg-info text-dark">
+              <table class="display compact order-column hover" id="myTable">
+                      <thead>
                         <tr>
                           <th scope="col"> Item </th>
                           <th scope="col">Medidor</th>
@@ -40,6 +40,19 @@ Lista de medidores
 
                         </tr>
                       </thead>
+                      <tfoot>
+                          <tr>
+                            <th scope="col"> Item </th>
+                            <th scope="col">Medidor</th>
+                            <th scope="col">Detalle</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Lectura inicial</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col" class=" text-center"><i class="fas fa-tools"></i></th>
+  
+                          </tr>
+                        </tfoot>
                       <tbody>
                           
                           {% if object_list %}
@@ -54,9 +67,9 @@ Lista de medidores
                           <td>{{measurer.initial_reading}}</td>
                           <td>{{measurer.state}}</td>
                           <td class=" text-center">
-                            <a href="{% url 'ajustes:measurer_update' pk=measurer.pk %}"><abbr title="Editar"> <i class="fas fa-edit text-info"></i></abbr></a> 
-                            <a href="{% url 'ajustes:measurer_detail' pk=measurer.pk %}"><abbr title="Ver detalle"><i class="far fa-eye text-success"></i></abbr></a> 
-                            <a href="{% url 'ajustes:measurer_delete' pk=measurer.pk %}"> <abbr title="Eliminar"> <i class="far fa-trash-alt text-dark"></i></abbr></a>
+                            <a href="{% url 'catastro:measurer_update' pk=measurer.pk %}"><abbr title="Editar"> <i class="fas fa-edit text-info"></i></abbr></a> 
+                            <a href="{% url 'catastro:measurer_detail' pk=measurer.pk %}"><abbr title="Ver detalle"><i class="far fa-eye text-success"></i></abbr></a> 
+                            <a href="{% url 'catastro:measurer_delete' pk=measurer.pk %}"> <abbr title="Eliminar"> <i class="far fa-trash-alt text-dark"></i></abbr></a>
                           </td>
                           
                         </tr>
@@ -80,6 +93,20 @@ Lista de medidores
   
  <!--scrip de DataTables-->
  
+ 
+ <script>
+    $(document).ready(function() {
+      $('#myTable').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+  } );
+
+ </script>
+
+
 {% endblock content %}
  
    
