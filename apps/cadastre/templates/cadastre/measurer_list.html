@@ -35,7 +35,7 @@ Lista de medidores
                           <th scope="col">Marca</th>
                           <th scope="col">Modelo</th>
                           <th scope="col">Lectura inicial</th>
-                          <th scope="col">Estado</th>
+                          <th scope="col">Asignado</th>
                           <th scope="col" class=" text-center"><i class="fas fa-tools"></i></th>
 
                         </tr>
@@ -48,7 +48,7 @@ Lista de medidores
                             <th scope="col">Marca</th>
                             <th scope="col">Modelo</th>
                             <th scope="col">Lectura inicial</th>
-                            <th scope="col">Estado</th>
+                            <th scope="col">Asignado</th>
                             <th scope="col" class=" text-center"><i class="fas fa-tools"></i></th>
   
                           </tr>
@@ -94,19 +94,6 @@ Lista de medidores
  <!--scrip de DataTables-->
  
  
- <script>
-    $(document).ready(function() {
-      $('#myTable').DataTable( {
-          dom: 'Bfrtip',
-          buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-          ]
-      } );
-  } );
-
- </script>
-
-
-{% endblock content %}
+ {% endblock content %}
  
    

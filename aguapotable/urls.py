@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from apps.configuration.urls import configuration_patterns
 from apps.cadastre.urls import cadastre_patterns
+from apps.profiles.urls import profile_patterns
 from django.conf import settings
 
 urlpatterns = [
@@ -24,6 +25,12 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('ajustes/', include(configuration_patterns)),
     path('catastro/', include(cadastre_patterns)),
+    path('pruebas/', include('pruebas.urls')),
+    # Paths de Auth
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('apps.registration.urls')),
+    #Path Profile
+    path('profiles/', include(profile_patterns)),
 ]
 
 #Media files

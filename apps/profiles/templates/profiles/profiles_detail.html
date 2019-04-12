@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+<!--content-->
+
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+
+{% block page-title %}
+Detalle de perfiles
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</button> </a>
+  <a href="{% url 'profiles:list' %}"> <button type="button" class="btn btn-info btn-sm"><i class="fas fa-list-alt "></i> Listar</button> </a>
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-trash-alt"></i> Borrar</button></a>
+</div>
+{% endblock submenu-crud %}
+
+  
+{% block content %}
+<section class="main container mt-2 ">
+
+    <div class="jumbotron">
+      <div class="row">
+      <div class="col-3 float-left">
+        <!-- Previa del avatar -->
+        {% if profile.avatar %}
+        <img src="{{profile.avatar.url}}" class="img-fluid">
+        {% else %}
+        <img src="{% static 'images/portrait.jpg' %}" class="img-fluid" style="width: 250px; height: 250px;"> 
+        {% endif %}
+      </div>
+      <div class="col-9 float-right">
+        <h1 class="display-4">{{profile.user}}</h1>
+        <p class="lead">{% if profile.bio %}
+            {{ profile.bio}}
+          {% endif %}</p></p>
+        <hr class="my-4">
+          {% if profile.link  %}
+            <a class="btn btn-primary btn-lg" href="{{profile.link}}" role="button">{{profile.link}}</a> 
+          {% endif %}</a>
+    </div>
+  </div>
+</div>
+      <!--Paginacion -->
+    
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+
+    </div>
+  </div>
+</section> <!--content end--> 
+
+
+{% endblock content %}
+

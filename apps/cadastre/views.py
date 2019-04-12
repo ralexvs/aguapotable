@@ -4,21 +4,37 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse, reverse_lazy
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 from openpyxl.styles import Font, Alignment
 from openpyxl import Workbook
 from django.http.response import HttpResponse
+from django.shortcuts import redirect
 from .models import (
     Subscribers, 
     Measurer,
+    Cadastral,
     )
 
 from .forms import (
     SubscribersForm, 
     MeasurerForm, 
+    CadastralForm,
     )
 
 
 # Create your views here.
+
+class StaffRequieredMixin(object):
+    """
+    Este mixin requerirá que el usuario sea miembro del staff
+    """
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return redirect(reverse_lazy('login'))
+    
+        return super(StaffRequieredMixin, self).dispatch(request, *args, **kwargs)
+    
 
 #ListView
 class SubscribersListView(ListView):
@@ -30,6 +46,8 @@ class MeasurerListView(ListView):
     model = Measurer
     #paginate_by = 10
 
+class CadastralListView(ListView):
+    model = Cadastral
 
 
 #DetailView
@@ -40,24 +58,39 @@ class SubscribersDetailView(DetailView):
 class MeasurerDetailView(DetailView):
     model = Measurer
 
+class CadastralDetailView(DetailView):
+    model = Cadastral
+
 
 #CreateView
-
+@method_decorator(staff_member_required, name='dispatch')
 class SubscribersCreateView(CreateView):
     model = Subscribers
     form_class = SubscribersForm
     template_name = "cadastre/subscribers_form.html"
     success_url = reverse_lazy('catastro:subscribers_list')
 
+    
+    
+@method_decorator(staff_member_required, name='dispatch')
 class MeasurerCreateView(CreateView):
     model = Measurer
     form_class = MeasurerForm
     template_name = "cadastre/measurer_form.html"
     success_url = reverse_lazy('catastro:measurer_list')
 
+@method_decorator(staff_member_required, name='dispatch')
+class CadastralCreateView(CreateView):
+    model = Cadastral
+    form_class = CadastralForm
+    template_name = "cadastre/cadastral_form.html"
+    success_url = reverse_lazy('catastro:cadastral_create')
+
+
 
 #UpdateView
-    
+
+@method_decorator(staff_member_required, name='dispatch')    
 class SubscribersUpdateView(UpdateView):
     model = Subscribers
     form_class = SubscribersForm
@@ -66,6 +99,7 @@ class SubscribersUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('catastro:subscribers_update', args=[self.object.id]) + '?ok'
 
+@method_decorator(staff_member_required, name='dispatch')
 class MeasurerUpdateView(UpdateView):
     model = Measurer
     form_class = MeasurerForm
@@ -74,19 +108,36 @@ class MeasurerUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('catastro:measurer_update', args=[self.object.id]) + '?ok'
 
+@method_decorator(staff_member_required, name='dispatch')
+class CadastralUpdateView(UpdateView):
+    model = Cadastral
+    form_class = CadastralForm
+    template_name_suffix = "_update_form"
+    
+    def get_success_url(self):
+        return reverse_lazy('catastro:cadastral_update', args=[self.object.id]) + '?ok'
+
+
+
 
 #DeleteView
 
+@method_decorator(staff_member_required, name='dispatch')
 class SubscribersDeleteView(DeleteView):
     model = Subscribers
     success_url = reverse_lazy('catastro:subscribers_list')
 
+@method_decorator(staff_member_required, name='dispatch')
 class MeasurerDeleteView(DeleteView):
     model = Measurer
     success_url = reverse_lazy('catastro:measurer_list')
 
-#Reportes
+@method_decorator(staff_member_required, name='dispatch')
+class CadastralDeleteView(DeleteView):
+    model = Cadastral
+    success_url = reverse_lazy('catastro:cadastral_list')
 
+#Reportes
 class ReportSubscribersExcel(TemplateView):
     def get(self, request, *args, **kwargs):
         subscribers = Subscribers.objects.all()

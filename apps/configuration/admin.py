@@ -7,21 +7,19 @@ from .models import (
     PaymentMethods,
 )
 
-# Register your models here.
-admin.site.register(Company)
-admin.site.register(TypesService)
-admin.site.register(Rate)
-admin.site.register(Fines)
-admin.site.register(PaymentMethods)
 
-"""
+
+class RateAdmin(admin.ModelAdmin):
+    list_display = ('detail', 'lowre_range','top_range')
+    search_fields = ('detail', 'lowre_range','top_range')
+    list_filter = ('detail', 'lowre_range','top_range')
+    readonly_fields = ('created','modified')
+
+    
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('ruc', 'business_name','tradename')
     search_fields = ('ruc', 'business_name','tradename')    
-
-
-
-
+    readonly_fields = ('created','modified')
 
 class TypeVoucherAdmin(admin.ModelAdmin):
     list_display = ('detail','code')
@@ -37,4 +35,10 @@ class IdentificationAdmin(admin.ModelAdmin):
     list_display = ('code','detail')
     search_fields = ('code','detail')
     ordering = ('code','detail')
-    """
+
+# Register your models here.
+admin.site.register(Company, CompanyAdmin)
+admin.site.register(TypesService)
+admin.site.register(Rate, RateAdmin)
+admin.site.register(Fines)
+admin.site.register(PaymentMethods)

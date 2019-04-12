@@ -1,8 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
-from apps.configuration.models import Rate, PaymentMethods, Discount
-
+from apps.configuration.models import Rate, PaymentMethods, Discount, Fines
 
 # Create your models here.
 
@@ -29,7 +28,7 @@ class Subscribers(models.Model):
       ordering = ["surname"]
 
    def __str__(self):
-      return self.identification + self.surname + self.name
+      return self.surname + self.name
 
 
 class Measurer(models.Model):
@@ -82,16 +81,17 @@ class Brand(models.Model):
       return self.detail
 
 
-"""
+
 class Cadastral(models.Model):
    cadastre_number = models.IntegerField(verbose_name="Numero catastral", unique=True)
    date_admission = models.DateTimeField(verbose_name="Fecha de Ingreso")
    subscribers = models.ForeignKey("Subscribers", verbose_name= "Abonado", on_delete=models.CASCADE)
-   rate = models.ForeignKey("Rate", verbose_name="Servicio", on_delete=models.CASCADE)
-   payment_methods = models.ForeignKey("PaymentMethods", verbose_name="Forma de Pago", on_delete=models.CASCADE)
+   rate = models.ForeignKey("configuration.Rate", verbose_name="Tarifa", on_delete=models.CASCADE)
+   payment_methods = models.ForeignKey("configuration.PaymentMethods", verbose_name="Forma de Pago", on_delete=models.CASCADE)
    measurer = models.ForeignKey("Measurer", verbose_name="Medidor", on_delete=models.CASCADE)
-   discount = models.ForeignKey("Discount", verbose_name="Tipo descuento", on_delete=models.CASCADE)
+   discount = models.ForeignKey("configuration.Discount", verbose_name="Tipo descuento", on_delete=models.CASCADE)
    detail = RichTextField(verbose_name="Detalle", blank=True, null=True)
+   state = models.NullBooleanField(verbose_name="Activo", null=True)
    created = models.DateTimeField(verbose_name="Fecha admisión", auto_now_add=True)
    modified = models.DateTimeField(verbose_name="Última Modificación", auto_now=True)
 
@@ -102,7 +102,54 @@ class Cadastral(models.Model):
       ordering = ['id']
 
    def __str__(self):
-      return self.name
+      return self.detail
 
- 
-"""
+class Readings(models.Model):
+   """Model definition for Readings."""
+
+   consumption_period = models.DateField(verbose_name="Período consumo", unique=True)
+   detail = RichTextField(verbose_name="Detalle")
+   created = models.DateTimeField(verbose_name="Fecha emisión", auto_now_add=True)
+   modified = models.DateTimeField(verbose_name="Última Modificación", auto_now=True)
+
+
+   # TODO: Define fields here
+
+   class Meta:
+      """Meta definition for Readings."""
+
+      verbose_name = 'Lectura'
+      verbose_name_plural = 'Lecturas'
+
+   def __str__(self):
+      """Unicode representation of Readings."""
+      return self.detail
+
+class ReadingsDetail(models.Model):
+   """Model definition for Readings."""
+   readings = models.ForeignKey("Readings", verbose_name="Lecturas", on_delete=models.CASCADE)
+   cadastral = models.ForeignKey("cadastral", verbose_name="Clave catastral", on_delete=models.CASCADE)
+   current_reading = models.PositiveIntegerField(verbose_name="Lectura actual")
+   previous_reading = models.PositiveIntegerField(verbose_name="Lectura anterior")
+   REAL = 1
+   EST = 2
+   READING_TYPE = (
+      (REAL,'Real'),
+      (EST,'Estimado'),
+   )
+   reading_type = models.IntegerField(verbose_name="M. cálculo", choices=READING_TYPE, default=1)
+   consumption = models.PositiveIntegerField(verbose_name="Consumo M3")
+   diameter = models.CharField(verbose_name="iámetro", max_length=5)
+   fines = models.ManyToManyField("configuration.Fines", verbose_name="Otros valores por pagar", default = 1)
+
+   # TODO: Define fields here
+
+   class Meta:
+      """Meta definition for Readings."""
+
+      verbose_name = 'Detalle Lectura'
+      verbose_name_plural = 'Detalle Lecturas'
+
+   def __str__(self):
+      """Unicode representation of Readings."""
+      pass

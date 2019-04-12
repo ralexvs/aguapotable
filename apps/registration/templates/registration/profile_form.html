@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+<!--content-->
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+{% block page-title %}
+Nuevo Profile
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-plus-circle"></i>Grabar</button> </a>
+  <a href="{% url 'catastro:cadastral_list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Deshacer</button></a>
+</div>
+{% endblock submenu-crud %}
+
+
+{% block content %}  
+<style>label{display:none}</style>
+<section class="main container mt-2">
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+      <div class="row">
+          <div class="col-md-2">
+            <!-- Previa del avatar -->
+              {% if request.user.profile.avatar %}
+                <img src="{{request.user.profile.avatar.url}}" class="img-fluid">
+                <p class="mt-1">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                {% else %}
+                  <img src="{% static 'images/portrait.jpg' %}" class="img-fluid">
+              {% endif %}
+          </div>
+          <!--Formulario-->
+          <div class="col-md-10">
+            <input class="form-control-file mt-3 mb-3" type="file" id="avatar" name="avatar">
+            {{ form.bio }}
+            {{ form.link }}
+            <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
+            <p class="mt-3">Si deseas editar tu email, haz clic <a href="{% url 'profile_email' %}"> aqui</a>.<br>
+              Y si quieres cambiar tu contraseña haz clic <a href="{% url 'password_change' %}"> aqui</a>.
+            </p>
+            <input class="btn btn-info btn-block mt-3" type="submit" id="#save" value="Actualizar">
+              <!--Paginacion -->
+          </div>                   
+      </div>
+    </form>
+        <!--
+        <aside class="col-3 bg-light" >
+            
+        </aside>
+        -->
+</section> <!--content end--> 
+{% endblock content %}  

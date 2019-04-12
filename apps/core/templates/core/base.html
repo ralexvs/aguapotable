@@ -1,5 +1,5 @@
 <!doctype html>
-{% load static %}
+{% load staticfiles %}
 <html lang="es">
  
 <head>
@@ -8,22 +8,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, inicital-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie-edge">
-    <title>{% block title %}  | Agua Potable{% endblock title %}
+    <title>{% block title %}{% endblock title %} | Agua Potable
      </title>
  
     <!-- Bootstrap CSS -->
  
- <link rel="stylesheet" type="text/css" href= "{% static 'core/css/bootstrap.css' %}" >
+ <link rel="stylesheet" type="text/css" href= "{% static 'css/bootstrap.css' %}" >
  
   <!-- fontawesome CSS -->
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
  
- <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+ 
 
  <!--DataTable-->
- <link rel="stylesheet" type="text/css" href="{% static 'core/css/jquery.dataTables.min.css' %}"/>
- <link rel="stylesheet" type="text/css" href="{% static 'core/css/buttons.dataTables.min.css' %}"/>
+ <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.dataTables.min.css' %}"/>
+ <link rel="stylesheet" type="text/css" href="{% static 'css/buttons.dataTables.min.css' %}"/>
 
+ 
+ <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+ <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+ 
+ <!-- Estilo ckeditor-->
+    <link rel="stylesheet" href="{% static 'css/custom_ckeditor.css' %}">
 </head>
 
 <body>
@@ -86,12 +92,7 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
 
-{% block content %}
-    
- <!--
-                    {% include 'core/includes/content.html' %}
-                    -->
-{% endblock content %}
+{% block content %}{% endblock content %}
                        
                    
 
@@ -121,21 +122,21 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->   
 
 
-    <script src="{% static 'core/js/jquery-3.3.1.js' %}"></script>
-    <script src="{% static 'core/js/popper.min.js' %}"></script>
-    <script src="{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     
 
     <!--DataTable-->
-    <script type="text/javascript" src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/dataTables.buttons.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/buttons.flash.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/jszip.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/pdfmake.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/vfs_fonts.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/buttons.html5.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/buttons.print.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'core/js/buttons.colVis.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dataTables.buttons.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/buttons.flash.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jszip.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pdfmake.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/vfs_fonts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/buttons.html5.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/buttons.print.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/buttons.colVis.min.js' %}"></script>
     
 <!--
     <script>

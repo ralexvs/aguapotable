@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+<!--content-->
+{% block title %}
+  {{instance.title}}
+{% endblock title %}
+
+{% block page-title %}
+Perfiles de usuarios
+
+{% endblock page-title %}
+
+
+{% block submenu-crud %}
+<div class="col-12  btn-group btn-group-sm mt-2 justify-content-end">
+  <a href="#"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-plus-circle"></i>Grabar</button> </a>
+  <a href="{% url 'profiles:list' %}"> <button type="button" class="btn btn-info btn-sm"  ><i class="fas fa-sync"></i> Deshacer</button></a>
+</div>
+{% endblock submenu-crud %}
+
+{% block content %}
+<style>label{display:none}</style>
+<section class="main container mt-2">
+
+<style>.profile-avatar{float:left;width:4rem;height:4rem}.profile-data{padding-left:4.5rem;padding-top:.4rem;}</style>
+
+<div class="row">
+{% for profile in object_list %}
+    <div class="col-md-4 mt-2 mb-3">
+        <div class="row p-1">
+            <div class="col-md-12">
+                {% if profile.avatar %}
+                    <img src="{{ profile.avatar.url}}" class="img-fluid profile-avatar">
+                {% else %}
+                   <img src="{% static "images/portrait2.jpg" %}" class="img-fluid profile-avatar">
+                        
+                    {% endif %}
+                <p class="profile-data">
+                    <b>{{profile.user|truncatechars:"16"}}</b><br>
+                    <a href="{% url 'profiles:detail' profile.user %}">Ver perfil</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% include 'core/includes/paginacion.html' %}
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?Contrase=C3=B1a_restablecida_en_localhost=3A8000?=
+From: webmaster@localhost
+To: soporte@asoftel.net
+Date: Sat, 06 Apr 2019 19:37:18 -0000
+Message-ID: 
+ <155457943863.3912.3967043465099608800@DESKTOP-0JVUQ0O.domain.name>
+
+Alguien pidió un restablecimiento de contraseña para correo electrónico soporte@asoftel.net. Siga el enlace de abajo:
+http://localhost:8000/accounts/reset/MTA/559-89ac079bcd02d45cd14e/
+Tu nombre de usuario es: matias
+-------------------------------------------------------------------------------

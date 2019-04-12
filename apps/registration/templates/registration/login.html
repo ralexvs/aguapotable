@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+         <div class="card ">
+             <div class="card-header text-center bg-secondary"><a href="{% url 'home' %}"><img class="logo" src="{% static 'images/logo.png' %}" alt="logo"></a><span>Por favor ingrese aqui su información</span></div>
+             <div class="card-body">
+                {% if 'register' in request.GET %}
+                    <p class="text-success">Usuario registrado correctamente, ya puedes identificarte</p>
+                {% endif %}
+                {% if form.non_field_errors %}
+                    <p class="text-danger">Tu nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
+                {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                <p>Tu cuenta no tiene acceso a esta página. Para proceder,
+                Por favor inicie sesión con una cuenta que tenga acceso.</p>
+                {% else %}
+                <p>Por favor inicie sesión para ver esta página.</p>
+                {% endif %}
+            {% endif %}
+
+            <form method="post" action="">
+            {% csrf_token %}
+                <input class="form-control mb-3" autofocus type="text" name="username" id="id_username" maxlength="254" required placeholder="Usuario">
+                <input class="form-control mb-3" type="password" name="password" id="id_password" required placeholder="Contraseña">
+            <button class="form-control btn btn-info mb-2" type="submit" > Acceder</button>
+            </form>
+             </div>
+             <div class="card-footer bg-white p-0  ">
+                 <div class="card-footer-item card-footer-item-bordered">
+                     <a href="{% url 'signup' %}" class="footer-link">Crea una cuenta</a></div>
+                 <div class="card-footer-item card-footer-item-bordered">
+                     <a href="{% url 'password_reset' %}" class="footer-link">Se te olvidó tu contraseña...</a>
+                 </div>
+             </div>
+         </div>
+   
+     <!-- ============================================================== -->
+     <!-- end login page  -->
+
+
+{% endblock content %}
